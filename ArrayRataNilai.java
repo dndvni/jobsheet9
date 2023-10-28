@@ -1,45 +1,33 @@
 import java.util.Scanner;
 
-public class ArrayRataNilai{
+public class ArrayRataNilai {
     public static void main(String[] args){
         Scanner input02 = new Scanner(System.in);
 
-        int[] nilaiMhs = new int[10];
-        int tdkLulus=0;
-        double total1=0, total2=0, rata2Lulus, rata2TdkLulus;
-
-        System.out.println("Masukkan jumlah mahasiswa :");
+        System.out.println("Masukkan jumlah Mahasiswa :");
         int jmlMhs = input02.nextInt();
 
-        for (int i = 0; i < nilaiMhs.length; i++){
-            System.out.print("Masukkan nilai Mahasiswa ke-"+(i+1)+" : ");
-            nilaiMhs[i] = input02.nextInt();
-        }
-
-        for (int i = 0; i < jmlMhs; i++) {
-            if (nilaiMhs[i] > 70) {
-                total1 += nilaiMhs[i];
-            }
-        }
-
-        for (int i = 0; i < jmlMhs; i++) {
-            if (nilaiMhs[i] <= 70) {
-                total2 += nilaiMhs[i];
-                tdkLulus++;
-            }
-        }
-
+        int[] nialiMhs = new int[jmlMhs];
         int totalLulus = 0;
-        for (int i = 0; i < nilaiMhs.length; i++) {
-            if (nilaiMhs[i]>70) {
+        double totalNilaiLulus = 0;
+        double totalNilaiTidakLulus = 0;
+
+        for (int i = 0; i < jmlMhs; i++) {
+            System.out.print("Masukkan nilai mahasiswa ke-" + (i + 1) + " : ");
+            nialiMhs[i] = input02.nextInt();
+
+            if (nialiMhs[i] > 70) {
                 totalLulus++;
+                totalNilaiLulus += nialiMhs[i];
+            } else {
+                totalNilaiTidakLulus += nialiMhs[i];
             }
-        
-        rata2Lulus = total1/totalLulus;
-        rata2TdkLulus = total2/tdkLulus;
-        System.out.println("Rata-rata nilai lulus = "+rata2Lulus);
-        System.out.println("Rata-rata nilai tidak lulus = "+rata2TdkLulus);
-        System.out.println("banyaknya mahasiswa yang lulus : "+totalLulus);
         }
-        }
+
+        double rataLulus = totalNilaiLulus / totalLulus;
+        double rataTidakLulus = totalLulus == 0 ? 0 : totalNilaiTidakLulus / (jmlMhs - totalLulus);
+
+        System.out.println("Rata-rata nilai lulus = " + rataLulus);
+        System.out.println("Rata-rata nilai tidak lulus = " + rataTidakLulus);
     }
+}
